@@ -6,10 +6,10 @@ import java.util.List;
 
 public class KidsWithTheGreatestNumberOfCandies {
     public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
-        var list = new ArrayList<Boolean>();
-        var max = Arrays.stream(candies).max();
-        Arrays.stream(candies).forEach(candy -> list.add(candy + extraCandies >= max.getAsInt()));
-        return list;
+        var max = Arrays.stream(candies).max().orElse(0);
+        return Arrays.stream(candies)
+                .mapToObj(candy -> candy + extraCandies >= max)
+                .toList();
     }
 
 //    Optimal solution
